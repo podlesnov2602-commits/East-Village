@@ -2,52 +2,53 @@ const heroImage = document.getElementById('heroImage');
 const propertyCards = document.getElementById('propertyCards');
 const gallery = document.getElementById('gallery');
 
-const heroPrompt =
-  'photorealistic premium european townhouse community in almaty foothills, brick glass metal architecture, green courtyards, mountain background, daylight, soft light, ultra realistic';
-heroImage.src = `https://image.pollinations.ai/prompt/${encodeURIComponent(heroPrompt)}?width=1800&height=1100&seed=11&model=flux`;
+const heroImageUrl =
+  'https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1800&h=1100&q=80';
 
 const properties = [
   {
     title: 'Full House',
     meta: '292 м² | 4.5 сотки | от 1 050 000 ₸/м²',
     description: 'Просторный дом с панорамной террасой и видами на город',
-    prompt:
-      'photorealistic spacious premium standalone house, modern european townhouse style, brick facade and panoramic terrace, mountain view, landscaped green yard, daylight',
+    image:
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&h=760&q=80',
   },
   {
     title: 'Premium Duplex',
     meta: '230 м² | 3 сотки | от 1 000 000 ₸/м²',
     description: 'Три уровня, современная архитектура, идеален для семьи',
-    prompt:
-      'photorealistic premium duplex house, three levels, contemporary architecture with brick and glass, clean private courtyard, mountain backdrop, daytime',
+    image:
+      'https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1000&h=760&q=80',
   },
   {
     title: 'Standard Duplex',
     meta: '230 м² | 3 сотки | от 850 000 ₸/м²',
     description: 'Рациональная планировка и доступная цена',
-    prompt:
-      'photorealistic modern duplex home, practical layout, european architecture, green landscaping, comfortable private yard, almaty mountains in background, natural light',
+    image:
+      'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1000&h=760&q=80',
   },
 ];
 
-const galleryPrompts = [
-  'photorealistic townhouse facades, premium residential village in almaty, brick and glass, daylight',
-  'photorealistic green private courtyards of modern townhouse village, soft daylight',
-  'photorealistic clean street inside premium cottage community, trees, modern architecture',
-  'photorealistic scenic mountain view behind residential community in almaty, clear air',
-  'photorealistic european townhouse entrance groups with minimalist landscaping',
-  'photorealistic neighborhood lane with modern duplexes and greenery, bright day',
-  'photorealistic family friendly courtyard with pathways and lawns in cottage settlement',
-  'photorealistic panoramic shot of premium village and mountain skyline, soft light',
+const galleryImages = [
+  'https://images.unsplash.com/photo-1464146072230-91cabc968266?auto=format&fit=crop&w=900&h=620&q=80',
+  'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&h=620&q=80',
+  'https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=900&h=620&q=80',
+  'https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=900&h=620&q=80',
+  'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=900&h=620&q=80',
+  'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=900&h=620&q=80',
+  'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=900&h=620&q=80',
+  'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&h=620&q=80',
 ];
+
+heroImage.src = heroImageUrl;
 
 propertyCards.innerHTML = properties
   .map(
-    (property, index) => `
+    (property) => `
       <article class="card reveal">
         <img
           class="card__media"
-          src="https://image.pollinations.ai/prompt/${encodeURIComponent(property.prompt)}?width=1000&height=760&seed=${index + 101}&model=flux"
+          src="${property.image}"
           alt="${property.title} — East Village"
           loading="lazy"
         />
@@ -64,12 +65,12 @@ propertyCards.innerHTML = properties
   )
   .join('');
 
-gallery.innerHTML = galleryPrompts
+gallery.innerHTML = galleryImages
   .map(
-    (prompt, index) => `
+    (image, index) => `
       <div class="gallery__item reveal">
         <img
-          src="https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=900&height=620&seed=${index + 210}&model=flux"
+          src="${image}"
           alt="Галерея East Village ${index + 1}"
           loading="lazy"
         />
